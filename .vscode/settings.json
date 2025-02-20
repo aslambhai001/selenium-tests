@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\aslam\\Downloads\\testng-7.10.2.jar",
+        "c:\\Users\\aslam\\Downloads\\selenium-server-4.27.0.jar"
+    ]
+}
