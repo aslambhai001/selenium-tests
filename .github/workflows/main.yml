@@ -1,0 +1,35 @@
+name: Run Selenium Tests
+
+on:
+  push:
+    branches:
+      - main  # Runs when code is pushed to main branch
+  pull_request:
+    branches:
+      - main  # Runs on pull requests to main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Runs on Linux
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Install Dependencies & Run Tests
+        run: |
+          mvn clean install  # Change this if using Gradle
+          mvn test  # Runs the Selenium tests
